@@ -1,5 +1,5 @@
 {
-  "name": "<%= slugName %>",
+  "name": "<%= appName %>",
   "version": "0.0.1",
   "scripts": {
     "dev": "NODE_ENV=development webpack-dev-server --config webpack.development.config.js --presets es2015 react --content-base build",

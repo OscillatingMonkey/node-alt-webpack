@@ -7,36 +7,24 @@ var slug = require('slug')
 module.exports = yeoman.Base.extend({
   constructor: function () {
     yeoman.Base.apply(this, arguments)
+    this.argument('appName', {type: String, required: true})
   },
   prompting: function () {
-    console.log(this)
-    let done = this.async()
-
     this.log(yosay('Hi! We are building a new Alt React Flux project!'))
-
-    var prompts = [{
-      type: 'input',
-      name: 'packageName',
-      message: 'Project Name?',
-      default: 'alt-project',
-      validate: (name) => {
-        return !!name
-      }
-    }]
-
-    this.prompt(prompts, function (props) {
-      this.name = props.packageName
-      this.slugName = slug(props.packageName, {lower: true})
-      done()
-    }.bind(this))
   },
-
   writing: {
     config: function () {
-      this.template('package.json', 'package.json', this.context)
+      this.fs.copyTpl(
+        this.templatePath('package.json'),
+        this.destinationPath('package.json'),
+        {
+          appName: this.appName
+        }
+      )
       this.template('README.md', 'README.md', this.context)
     },
     projectFiles: function () {
+      console.log(this.context)
       this.template('webpack.config.js', 'webpack.config.js', this.context)
       this.template('webpack.development.config.js', 'webpack.development.config.js', this.context)
       this.template('webpack.production.config.js', 'webpack.production.config.js', this.context)
