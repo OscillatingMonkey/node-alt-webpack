@@ -1,6 +1,0 @@
-{
-  "generator-react-webpack": {
-    "appName": "someapp",
-    "style": "scss"
-  }
-}
