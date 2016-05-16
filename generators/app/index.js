@@ -1,8 +1,7 @@
 'use strict'
 
 let yeoman = require('yeoman-generator')
-var yosay = require('yosay')
-var slug = require('slug')
+let yosay = require('yosay')
 
 module.exports = yeoman.Base.extend({
   constructor: function () {
@@ -24,7 +23,6 @@ module.exports = yeoman.Base.extend({
       this.template('README.md', 'README.md', this.context)
     },
     projectFiles: function () {
-      console.log(this.context)
       this.template('webpack.config.js', 'webpack.config.js', this.context)
       this.template('webpack.development.config.js', 'webpack.development.config.js', this.context)
       this.template('webpack.production.config.js', 'webpack.production.config.js', this.context)
@@ -32,6 +30,7 @@ module.exports = yeoman.Base.extend({
       this.directory('config', 'config', this.context)
       this.directory('dist', 'dist', this.context)
       this.directory('scripts', 'scripts', this.context)
+      this.config.save()
     }
   },
   install: function () {
